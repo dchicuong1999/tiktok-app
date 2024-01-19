@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    min-width: 223px;
+    min-height: 100px;
+    padding-top: 8px;
+    background: var(--white);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    max-height: min(100vh - 156px, 760px);
+    overflow: hidden auto;
+    list-style-type: none;
+    padding-inline-start: 0px;
+}

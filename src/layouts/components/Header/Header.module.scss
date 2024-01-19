@@ -1,0 +1,107 @@
+.wrapper {
+    --search-border-radius: 100px;
+    --search-height: 42px;
+    --search-top-spacer: 9px; 
+    --search-btn-width: 52px; 
+
+    width: 100%;
+    height: var(--default-layout-header-height, 60px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 1px 1px rgb(0, 0, 0, .12);
+}
+
+.content {
+    height: 100%;
+    width: var(--default-layout-width, 1150px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search, .search-result {
+    width: 361px;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    min-width: 200px;
+    height: var(--search-height);
+    padding-left: 16px;
+    background-color: #1618230f;
+    border-radius: var(--search-border-radius);
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        height: 100%;
+        color: var(--black);
+        font-size: 1.6rem;
+        background-color: transparent;
+        caret-color: var(--primary);
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75)
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-btn-width);
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background-color: rgba(22, 24, 35, 0.2);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.search-title {
+    padding: 5px 12px;
+    font-size: 14px;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.clear-btn,
+.loading-btn {
+    position: absolute;
+    font-size: 2rem;
+    right: calc(var(--search-btn-width) + 18px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.search-btn {
+    font-size: 2rem;
+    height: 100%;
+    width: var(--search-btn-width);
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.1);
+    }
+}
+
+.actions {
+    text-align: center;
+}
+
+.custom {
+    color: red;
+    background-color:  rgba(22, 24, 35, 0.1);
+    border-radius: 4px;
+}
