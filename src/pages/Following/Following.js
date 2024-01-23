@@ -1,3 +1,5 @@
+// import styles from './Following.module.scss'
+
 function Following() {
   return <h1>Following Page</h1>;
 }
