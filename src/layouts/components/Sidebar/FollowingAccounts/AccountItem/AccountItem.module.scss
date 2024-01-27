@@ -1,0 +1,47 @@
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.image {
+    width: 36px;
+    height: 36px;
+}
+
+.avatar {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    padding-left: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+}
+
+.nickname {
+    font-size: 1.6rem;
+}
+
+.icon {
+    display: flex;
+    margin-left: 4px;
+}
+
+.name {
+    font-size: 1.2rem;
+    opacity: #161823bf;
+}
+
+.more-btn {
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+}

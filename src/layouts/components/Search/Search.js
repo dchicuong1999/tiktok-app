@@ -1,47 +1,54 @@
 import TippyHeadless from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { SearchIcon } from '~/components/Icons';
 import useDebounce from '~/hooks/useDebounce';
-import * as searchServices from '~/api-services/searchServices';
+import * as searchServices from '~/services/searchService';
+import SearchResult from './SearchResult';
 
 const cx = classNames.bind(styles);
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [showSearchResult, setShowSearchResult] = useState(true);
+  const [showSearchResult, setShowSearchResult] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const searchInputRef = useRef();
 
-  const debounced = useDebounce(searchValue, 600);
+  const debouncedValue = useDebounce(searchValue, 600);
 
   useEffect(() => {
-    if (!debounced.trim()) {
+    if (!debouncedValue.trim()) {
       setSearchResult([]);
       return;
     }
-    
+
     setLoading(true);
     const fetchApi = async () => {
-      const result = await searchServices.search(debounced);
+      const result = await searchServices.search(debouncedValue);
 
       setSearchResult(result);
-      
+
       setLoading(false);
     };
-    
+
     fetchApi();
+  }, [debouncedValue]);
+
+  const handleInputSearch = (e) => {
+    const inputValue = e.target.value;
     
-  }, [debounced]);
+    if (!inputValue.startsWith(' ')) {
+      setSearchValue(inputValue)
+    }
+  };
 
   const handleClear = () => {
     setSearchValue('');
@@ -53,8 +60,14 @@ function Search() {
     setShowSearchResult(false);
   };
 
+  const sendDataSearchResult = useCallback(() => {
+    return <SearchResult data={searchResult} />
+  }, [searchResult])
+
   return (
-    <div>
+    // Using a wrapper <div> or <span> tag around the reference element solves 
+    // this by creating a new parentNode context. 
+    <div className={cx('wrapper')}>
       <TippyHeadless
         interactive
         visible={showSearchResult && searchResult.length > 0}
@@ -62,9 +75,7 @@ function Search() {
           <div className={cx('search-result')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
               <h4 className={cx('search-title')}>Accounts</h4>
-              {searchResult.map((result) => (
-                <AccountItem key={result.id} data={result} />
-              ))}
+              {sendDataSearchResult()}
             </PopperWrapper>
           </div>
         )}
@@ -76,7 +87,7 @@ function Search() {
             ref={searchInputRef}
             placeholder="Search accounts anh videos..."
             spellCheck={false}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={handleInputSearch}
             onFocus={() => setShowSearchResult(true)}
           />
 
@@ -87,7 +98,7 @@ function Search() {
           )}
           {!!loading && <FontAwesomeIcon className={cx('loading-btn')} icon={faSpinner} />}
 
-          <button className={cx('search-btn')}>
+          <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
             <SearchIcon />
           </button>
         </div>

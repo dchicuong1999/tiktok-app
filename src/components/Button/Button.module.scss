@@ -6,8 +6,8 @@
     font-family: var(--font-family);
     font-size: 1.6rem;
     font-weight: 700;
-    min-width: 100px;
-    padding: 9px 16px;
+    min-width: 110px;
+    padding: 5px 15px;
     border-radius: 4px;
     cursor: pointer;
     background-color: var(--white);
@@ -48,11 +48,11 @@
 .primary {
     color: var(--white);
     background-color: var(--primary);
-    border-color: var(--primary);
+    border: 4.5px solid var(--primary);
 
     &:hover {
         border-color: var(--primary);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6), #FE2C55);
+        background: linear-gradient(0deg, rgb(254, 26, 72), rgb(205, 3, 44), #FE2C55);
     }
 }
 

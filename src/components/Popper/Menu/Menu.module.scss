@@ -1,60 +1,68 @@
 // Menu
 .content {
-    width: 224px;
+  width: 224px;
 
-    .menu-item {
-        margin-left: 0;
-    }
+  .menu-item {
+    margin-left: 0;
+  }
 }
 
 .menu-popper {
-    padding-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.menu-item-list {
+    overflow-y: auto;
 }
 
 // Menu item
 .menu-item {
-    width: 224px;
-    width: 100%;
-    justify-content: flex-start;
-    border-radius: 0;
-    padding: 10px 16px;
-    line-height: 1.8rem;
+  width: 224px;
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 0;
+  padding: 10px 16px;
+  line-height: 1.8rem;
 
-    &.separate {
-        border-top: 1px solid rgba(22, 24, 35, 0.12);
-    }
+  &.separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+  }
 
-    &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
-    }
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
 }
 
 // Header menu
 .header {
     position: relative;
-    margin: -8px;
+    flex-shrink: 0;
+    width: 100%;
     height: 50px;
+    margin-top: -8px;
 }
 
 .back-btn {
-    position: absolute;
-    font-size: 1.6rem;
-    padding: 8px 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 14px;
-    border-radius: 8px;
-    border: 1px solid var(--white);
-    background-color: var(--white);
+  position: absolute;
+  font-size: 1.6rem;
+  padding: 8px 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--white);
+  background-color: var(--white);
 
-    &:hover {
-        cursor: pointer;
-        border-color: var(--primary);
-        background-color: #eee;
-    }
+  &:hover {
+    cursor: pointer;
+    border-color: var(--primary);
+    background-color: #eee;
+  }
 }
 
 .header-title {
-    text-align: center;
-    padding: 13px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50% ,-50%);
 }

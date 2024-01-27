@@ -3,128 +3,28 @@ import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignIn, faAdd, } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faAdd } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import images from '~/assets/images';
-import styles from './Header.module.scss';
-import {
-  LanguagesIcon,
-  MessageIcon,
-  MoreMenuIcon,
-  FeedbackIcon,
-  ProfileIcon,
-  FavoritesIcon,
-  CoinsIcon,
-  LiveStudioIcon,
-  LiveCreatorHubIcon,
-  SettingsIcon,
-  DarkModeIcon,
-  KeyboardIcon,
-  InboxIcon,
-} from '~/components/Icons';
+import { MessageIcon, MoreMenuIcon, InboxIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import config from '~/config';
+import styles from './Header.module.scss';
 import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-  {
-    icon: <LanguagesIcon />,
-    title: 'English',
-    children: {
-      data: [
-        {
-          type: 'language',
-          code: 'eng',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'vie',
-          title: 'Tiếng Việt',
-        },
-        {
-          type: 'language',
-          code: 'chi',
-          title: 'Tiếng Trung',
-          children: {
-            data: [
-              {
-                type: 'language',
-                code: 'chinaPT',
-                title: 'Tiếng Trung Phồn Thể',
-              },
-              {
-                type: 'language',
-                code: 'chinaGT',
-                title: 'Tiếng Trung Giản Thể',
-              },
-            ],
-          },
-        },
-      ],
-    },
-  },
-  {
-    icon: <FeedbackIcon />,
-    title: 'Feedback and help',
-    to: '/feedback',
-  },
-  {
-    icon: <KeyboardIcon />,
-    title: 'Keyboard shortcuts',
-  },
-];
-
-const USER_LOGIN_MENU_ITEMS = [
-  {
-    icon: <ProfileIcon />,
-    title: 'View profile',
-    to: '/@dchicuong',
-  },
-  {
-    icon: <FavoritesIcon />,
-    title: 'Favorites',
-  },
-  {
-    icon: <CoinsIcon />,
-    title: 'Get Coins',
-    to: '/coins',
-  },
-  {
-    icon: <LiveStudioIcon />,
-    title: 'LIVE Studio',
-    to: '/live-studio',
-  },
-  {
-    icon: <LiveCreatorHubIcon />,
-    title: 'LIVE Creator Hub',
-    to: '/live-creator-hub',
-  },
-  {
-    icon: <SettingsIcon />,
-    title: 'Settings',
-    to: '/settings',
-  },
-  ...MENU_ITEMS,
-  {
-    icon: <DarkModeIcon />,
-    title: 'Dark mode',
-  },
-  {
-    icon: <KeyboardIcon />,
-    title: 'Log out',
-    separate: true,
-  },
-];
-
 function Header() {
-  const [userLogin, setUserLogin] = useState(true);
+  const [userLogin, setUserLogin] = useState(false);
 
   const handleChangeMenu = (item) => {
+    if (item.active === 'LOG_OUT') {
+      setUserLogin(false);
+    }
+
     switch (item.type) {
       case 'language':
         item.selected = true;
@@ -136,11 +36,15 @@ function Header() {
     console.log(item);
   };
 
+  const handleLogin = () => {
+    setUserLogin(true);
+  };
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
         {/* Logo */}
-        <Link to="/">
+        <Link to={config.routes.home} className={cx('logo')}>
           <img src={images.logoTiktok} alt="Logo-Tiktok" />
         </Link>
 
@@ -162,9 +66,7 @@ function Header() {
                 <Button
                   primary
                   leftIcon={<FontAwesomeIcon icon={faSignIn} />}
-                  onClick={() => {
-                    setUserLogin(!userLogin);
-                  }}
+                  onClick={handleLogin}
                 >
                   Login
                 </Button>
@@ -187,7 +89,7 @@ function Header() {
 
               <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
                 <button className={cx('actions-btn')}>
-                  <InboxIcon width="3rem" height="3rem" />
+                  <InboxIcon />
                   <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
@@ -195,10 +97,7 @@ function Header() {
           )}
 
           {/* Menu Items */}
-          <Menu
-            menuItems={!userLogin ? MENU_ITEMS : USER_LOGIN_MENU_ITEMS}
-            onChange={handleChangeMenu}
-          >
+          <Menu stateLogin={userLogin} onChange={handleChangeMenu}>
             {!userLogin ? (
               <button className={cx('actions-btn')}>
                 <MoreMenuIcon className={cx('menu-btn')} />

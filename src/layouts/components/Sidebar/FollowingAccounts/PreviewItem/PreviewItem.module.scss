@@ -1,0 +1,72 @@
+.wrapper {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  margin-top: -8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image {
+  width: 48px;
+  height: 48px;
+}
+
+.avatar {
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.content {
+  padding-top: 12px;
+}
+
+.info {
+  padding: 4px 0;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.nickname {
+  font-size: 1.8rem;
+}
+
+.icon {
+  display: flex;
+  margin-left: 4px;
+}
+
+.name {
+  font-size: 1.2rem;
+}
+
+.analytics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+.followers,
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  font-size: 1.5rem;
+}
+
+.label {
+  padding-left: 4px;
+  font-size: 1.2rem;
+  color: var(--primary);
+}

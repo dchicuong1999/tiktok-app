@@ -1,14 +1,12 @@
 import axios from 'axios';
 
 const httpRequest = axios.create({
-  baseURL: 'https://tiktok.fullstack.edu.vn/api/',
-//   timeout: 1000,
-//   headers: { 'X-Custom-Header': 'foobar' },
+  baseURL: process.env.REACT_APP_BASE_URL, // https://tiktok.fullstack.edu.vn/api/
 });
 
 export const get = async (path, options = {}) => {
-    const response = await httpRequest.get(path, options);
-    return response.data;
-}
+  const response = await httpRequest.get(path, options);
+  return response.data;
+};
 
-export default httpRequest
+export default httpRequest;

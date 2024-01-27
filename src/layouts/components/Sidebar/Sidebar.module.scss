@@ -1,4 +1,31 @@
 .wrapper {
-    width: 240px;
-    background-color: #bbb;
+    position: fixed;
+    z-index: 99;
+    width: var(--default-layout-sidebar-width);
+    padding: 20px 0px 26px 8px;
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    perspective-origin: right top;
+    top: var(--default-layout-header-height);
+    bottom: 0px;
+    padding-right: 8px;
+}
+
+.sidebar {
+    position: absolute;
+    padding: 0px 4px;
+    top: 0px;
+    transition: opacity 0.5s ease 0s;
+    opacity: 0;
+    right: 0px;
+    transform-origin: right top;
+    
+    &.scroll-sidebar {
+        width: 6px;
+        height: 100%;
+        border-radius: 3px;
+        background: rgba(22, 24, 35, 0.06);
+    }
 }

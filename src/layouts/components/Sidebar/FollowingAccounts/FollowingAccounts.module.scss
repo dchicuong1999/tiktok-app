@@ -1,0 +1,24 @@
+.wrapper {
+    border-top: 1px solid #e3e3e4;
+}
+
+.title, .more-btn {
+    font-size: 1.4rem;
+    padding: 8px;
+    line-height: 2rem;
+}
+
+.title {
+    font-weight: 600; 
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.more-btn {
+    cursor: pointer;
+}

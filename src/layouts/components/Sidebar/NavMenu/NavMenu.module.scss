@@ -1,0 +1,43 @@
+// Nav Menu
+.wrapper {
+}
+
+// Menu Item
+.menu-item {
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 700;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 4px;
+  transition: background-color 200ms ease-in-out 0s;
+  color: var(--text-color);
+
+  &.active {
+    color: var(--primary);
+
+    .icon-active {
+      display: flex;
+    }
+
+    .icon {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.icon {
+  display: flex;
+}
+
+.icon-active {
+  display: none;
+}
+
+.title {
+  margin-left: 12px;
+}

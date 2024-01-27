@@ -1,35 +1,26 @@
+import classNames from 'classnames/bind';
+import styles from './Sidebar.module.scss';
 
-import { Link } from 'react-router-dom';
-
-import classNames from "classnames/bind";
-import styles from './Sidebar.module.scss'
+import NavMenu from './NavMenu';
+import FollowingAccounts from './FollowingAccounts';
+import Footer from './Footer';
+import { NAV_MENU_ITEM } from '~/data';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
   return (
     <aside className={cx('wrapper')}>
-      <h1>Sidebar</h1>
+      <div className={cx('container')}>
+        <NavMenu data={NAV_MENU_ITEM} />
 
-      <li>
-        <Link to="/">Home</Link>
-      </li>
+        <FollowingAccounts title="Following Accounts" />
 
-      <li>
-        <Link to="/following">Following</Link>
-      </li>
-
-      <li>
-        <Link to="/profile">Profile</Link>
-      </li>
-
-      <li>
-        <Link to="/upload">Upload</Link>
-      </li>
-
-      <li>
-        <Link to="/search">Search</Link>
-      </li>
+        <Footer />
+      </div>
+      <div className={cx('sidebar')}>
+        <div className={cx('scroll-sidebar')}></div>
+      </div>
     </aside>
   );
 }

@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import images from '~/assets/images';
 import './App.css';
 import { publicRoutes } from '~/routes';
-import { DefaultLayout } from '~/layouts';
+import MainLayout from '~/layouts';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         {publicRoutes.map((route, index) => {
           const Page = route.component;
-          let Layout = DefaultLayout;
+          let Layout = MainLayout;
 
           if (route.layout) {
             Layout = route.layout;

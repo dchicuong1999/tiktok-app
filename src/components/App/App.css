@@ -1,21 +1,18 @@
-.App {
-
-}
-
 .App-logo {
   position: fixed;
-  right: 8px;
-  top: 8px;
-  height: 48px;
-  width: 48px;
+  left: 0;
+  top: 16px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
   pointer-events: none;
   background-color: #282c34;
+  z-index: 100;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 10s linear;
+    animation: App-logo-spin infinite 3s linear;
   }
 }
 
