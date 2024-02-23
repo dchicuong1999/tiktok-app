@@ -5,10 +5,10 @@
     text-align: center;
     font-family: var(--font-family);
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
     min-width: 110px;
-    padding: 5px 15px;
-    border-radius: 4px;
+    height: 36px;
+    border-radius: 2px;
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;
@@ -30,7 +30,8 @@
 }
 
 .icon {
-    width: 20px;
+    display: inline-flex;
+    align-items: center;
 }
 
 // Button styles
@@ -52,17 +53,15 @@
 
     &:hover {
         border-color: var(--primary);
-        background: linear-gradient(0deg, rgb(254, 26, 72), rgb(205, 3, 44), #FE2C55);
+        background: linear-gradient(0deg, rgb(248, 50, 90), rgb(248, 28, 72), #FE2C55);
     }
 }
 
 .outline {
-    color: var(--primary);
-    border-color: currentColor;
+    border: 1px solid rgba(22, 24, 35, 0.12);
 
     &:hover {
-        border-color: currentColor;
-        background-color: rgba(254, 44, 85, 0.06);
+        background-color: rgba(22, 24, 35, 0.03);
     }
 }
 
@@ -74,8 +73,9 @@
 
 // Button sizes
 .small {
-    min-width: 88px;
-    padding: 4px 16px;
+    color: var(--primary);
+    border-color: currentColor;
+    min-width: 96px;
 }
 
 .large {

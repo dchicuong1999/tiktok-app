@@ -1,47 +1,56 @@
+.wrapper {
+  overflow: hidden;
+}
+
 .account-item {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .image {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 
 .avatar {
-    width: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .info {
-    flex: 1;
-    padding-left: 12px;
+  max-width: 80%;
+  flex: 1;
+  padding-left: 12px;
 }
 
 .info-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .nickname {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .icon {
-    display: flex;
-    margin-left: 4px;
+  display: flex;
+  margin-left: 4px;
 }
 
 .name {
-    font-size: 1.2rem;
-    opacity: #161823bf;
+  font-size: 1.2rem;
+  opacity: #161823bf;
 }
 
 .more-btn {
-    color: var(--primary);
-    font-weight: 700;
-    cursor: pointer;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
 }

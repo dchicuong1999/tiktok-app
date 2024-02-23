@@ -1,5 +1,6 @@
 // Nav Menu
 .wrapper {
+  padding-bottom: 8px;
 }
 
 // Menu Item
@@ -30,8 +31,13 @@
   }
 }
 
-.icon {
+.icon,
+.icon-active {
+  width: 32px;
+  height: 32px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon-active {
@@ -40,4 +46,13 @@
 
 .title {
   margin-left: 12px;
+}
+
+.custom {
+  color: var(--white);
+  padding: 0px 8px;
+  border-radius: 12px;
+  background-color: var(--primary);
+  font-size: 1.3rem;
+  margin-left: 8px;
 }

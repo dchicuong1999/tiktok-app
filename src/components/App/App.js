@@ -2,7 +2,6 @@
 import { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import images from '~/assets/images';
 import './App.css';
 import { publicRoutes } from '~/routes';
 import MainLayout from '~/layouts';
@@ -10,8 +9,6 @@ import MainLayout from '~/layouts';
 function App() {
   return (
     <div className="App">
-      <img src={images.logoReact} className="App-logo" alt="Logo-React" />
-
       <Routes>
         {publicRoutes.map((route, index) => {
           const Page = route.component;

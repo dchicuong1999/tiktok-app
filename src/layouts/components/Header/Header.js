@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignIn, faAdd } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faAdd, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import Button from '~/components/Button';
@@ -17,8 +17,8 @@ import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
-function Header() {
-  const [userLogin, setUserLogin] = useState(false);
+function Header({ parentCallback = () => {}, loginState, guestLoginState }) {
+  const [userLogin, setUserLogin] = useState(true);
 
   const handleChangeMenu = (item) => {
     if (item.active === 'LOG_OUT') {
@@ -37,7 +37,7 @@ function Header() {
   };
 
   const handleLogin = () => {
-    setUserLogin(true);
+    parentCallback(true);
   };
 
   return (
@@ -55,31 +55,19 @@ function Header() {
         <div className={cx('actions')}>
           {!userLogin ? (
             <>
-              {/* Chưa login */}
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
-                <Button outline to="/upload" leftIcon={<FontAwesomeIcon icon={faAdd} />}>
-                  Upload
-                </Button>
-              </Tippy>
+              <Button outline to="/upload" leftIcon={<FontAwesomeIcon icon={faAdd} />}>
+                Upload
+              </Button>
 
-              <Tippy delay={[0, 200]} content="Login" placement="bottom">
-                <Button
-                  primary
-                  leftIcon={<FontAwesomeIcon icon={faSignIn} />}
-                  onClick={handleLogin}
-                >
-                  Login
-                </Button>
-              </Tippy>
+              <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />} onClick={handleLogin}>
+                Login
+              </Button>
             </>
           ) : (
             <>
-              {/* Đã login */}
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
-                <Button outline to="/upload" leftIcon={<FontAwesomeIcon icon={faAdd} />}>
-                  Upload
-                </Button>
-              </Tippy>
+              <Button outline to="/upload" leftIcon={<FontAwesomeIcon icon={faAdd} />}>
+                Upload
+              </Button>
 
               <Tippy delay={[0, 100]} content="Message" placement="bottom">
                 <button className={cx('actions-btn')}>
@@ -89,7 +77,7 @@ function Header() {
 
               <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
                 <button className={cx('actions-btn')}>
-                  <InboxIcon />
+                  <InboxIcon  width='3rem' height='3rem' />
                   <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
@@ -99,9 +87,17 @@ function Header() {
           {/* Menu Items */}
           <Menu stateLogin={userLogin} onChange={handleChangeMenu}>
             {!userLogin ? (
-              <button className={cx('actions-btn')}>
-                <MoreMenuIcon className={cx('menu-btn')} />
-              </button>
+              guestLoginState ? (
+                <Tippy delay={[0, 100]} content="Anonymous" placement="bottom">
+                  <button className={cx('actions-btn')}>
+                    <FontAwesomeIcon width={24} height={24} icon={faUserSecret} />
+                  </button>
+                </Tippy>
+              ) : (
+                <button className={cx('actions-btn')}>
+                  <MoreMenuIcon />
+                </button>
+              )
             ) : (
               <Image
                 className={cx('user-avatar')}

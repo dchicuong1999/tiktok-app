@@ -6,57 +6,46 @@ import styles from './AccountItem.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { CheckIcon } from '~/components/Icons';
 import PreviewItem from '../PreviewItem';
+import Image from '~/components/Image';
+import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
-  const handleShowInfo = () => {};  
-
+const AccountItem = memo(({ data }) => {
   const renderPreview = (props) => {
     return (
       <div tabIndex="-1" {...props}>
         <PopperWrapper>
-          <PreviewItem />
+          <PreviewItem data={data} />
         </PopperWrapper>
       </div>
     );
   };
+
   return (
     // Using a wrapper <div> or <span> tag around the reference element solves
     // this by creating a new parentNode context.
-    <div>
-      <TippyHeadless
-        interactive
-        delay={[800, 0]}
-        placement="bottom"
-        render={renderPreview}
-        onClickOutside={handleShowInfo}
-      >
+    <div className={cx('wrapper')}>
+      <TippyHeadless interactive delay={[800, 0]} placement="bottom" render={renderPreview}>
         <div className={cx('account-item')}>
           <span className={cx('image')}>
-            <img
-              className={cx('avatar')}
-              src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/4b85df94ddbc913a995d4d721e417580.jpeg?lk3s=30310797&x-expires=1706338800&x-signature=Q5twc0fCYDybs9aQwoKr%2Fiq8tnA%3D"
-              alt="hoa"
-            />
+            <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
           </span>
           <div className={cx('info')}>
             <strong className={cx('info-item')}>
-              <h4 className={cx('nickname')}>hoaahanassii</h4>
-              <span className={cx('icon')}>
-                <CheckIcon />
-              </span>
+              <h4 className={cx('nickname')}>{data.nickname}</h4>
+              <span className={cx('icon')}>{data.tick && <CheckIcon />}</span>
             </strong>
-            <p className={cx('name')}>Lê Đào Phương Hoa</p>
+            <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
           </div>
         </div>
       </TippyHeadless>
     </div>
   );
-}
+})
 
 AccountItem.propTypes = {
-  children: PropTypes.node,
+  data: PropTypes.object.isRequired,
 };
 
 export default AccountItem;

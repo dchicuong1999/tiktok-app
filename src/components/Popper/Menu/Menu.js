@@ -21,9 +21,9 @@ function Menu({ stateLogin = false, hideOnClick = false, children, onChange = de
 
   useEffect(() => {
     setHistory(checkStateLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateLogin]);
-  
+
   const titleChildren = useRef();
 
   const currentMenu = history[history.length - 1];

@@ -15,6 +15,7 @@ function NavMenu({ data }) {
             title={item.title}
             icon={item.icon}
             iconActive={item.iconActive}
+            custom={item.custom}
           />
         );
       })}

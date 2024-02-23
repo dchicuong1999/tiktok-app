@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './OnlyHeader.module.scss';
-import { Header, Footer } from '../components';
+import { Header, } from '../components';
 import Container from '../components/Container';
 
 const cx = classNames.bind(styles);
@@ -14,8 +14,6 @@ function OnlyHeader({ children }) {
             <Container>
                {children}
             </Container>
-
-            <Footer />            
         </div>
     );
 }
